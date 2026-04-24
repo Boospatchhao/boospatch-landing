@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.91.0",
     "@libsql/client": "^0.17.2",
     "@motherduck/wasm-client": "^0.8.1",
+    "@supabase/supabase-js": "^2.104.1",
     "@types/d3-geo": "^3.1.0",
     "@types/d3-scale": "^4.0.9",
     "@types/topojson-client": "^3.1.5",
