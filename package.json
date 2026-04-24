@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@libsql/client": "^0.17.2",
     "@motherduck/wasm-client": "^0.8.1",
     "@types/d3-geo": "^3.1.0",
     "@types/d3-scale": "^4.0.9",

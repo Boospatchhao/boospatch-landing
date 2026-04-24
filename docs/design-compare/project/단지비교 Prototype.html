@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>부스패치 · 단지 비교 v2</title>
+<link rel="icon" href="assets/logo-symbol.svg">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  html, body { height: 100%; margin: 0; }
+  body { background: #f8f9fc; font-family: var(--font-sans); }
+  #root { min-height: 100vh; }
+  * { box-sizing: border-box; }
+  button { font-family: var(--font-sans); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+  window.__resources = {
+    logoDefault: 'assets/logo-default.svg',
+    logoSymbol: 'assets/logo-symbol.svg',
+  };
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components/Icons.jsx"></script>
+<script type="text/babel" src="components/Primitives.jsx"></script>
+<script type="text/babel" src="components/LNB.jsx"></script>
+<script type="text/babel" src="components/Charts.jsx"></script>
+<script type="text/babel" src="components/data2.jsx"></script>
+<script type="text/babel" src="components/CompareCharts.jsx"></script>
+<script type="text/babel" src="components/CompareParts.jsx"></script>
+<script type="text/babel" src="components/FlowScreens.jsx"></script>
+<script type="text/babel" src="components/tweaks-panel.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "autoSelectTop3": false
+}/*EDITMODE-END*/;
+
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  const [primaryKey, setPrimaryKey] = React.useState('namsanTown');
+  const [selected, setSelected] = React.useState(tweaks.autoSelectTop3 ? ['yaksu-heights', 'geumho-daewoo', 'doosan'] : []);
+  const [filter, setFilter] = React.useState('all');
+
+  const toggle = (key) => {
+    if (key === '__reset') { setSelected([]); return; }
+    setSelected((prev) => {
+      if (prev.includes(key)) return prev.filter((k) => k !== key);
+      if (prev.length >= 5) return prev;
+      return [...prev, key];
+    });
+  };
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#f8f9fc' }}>
+      <LNB active="compare" onSelect={() => {}}/>
+      <main style={{ flex: 1, minWidth: 0 }} data-screen-label="단지 비교">
+        <UnifiedScreen primaryKey={primaryKey} onPrimaryKey={setPrimaryKey}
+          selected={selected} onToggle={toggle} filter={filter} onFilter={setFilter}/>
+      </main>
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="비교 단지">
+          <TweakButton label="상위 3개 자동 선택" onClick={() => setSelected(['yaksu-heights', 'geumho-daewoo', 'doosan'])}/>
+          <TweakButton label="선택 초기화" secondary onClick={() => setSelected([])}/>
+        </TweakSection>
+        <TweakSection label="기준 단지">
+          <TweakSelect label="기준 단지" value={primaryKey} onChange={setPrimaryKey}
+            options={[
+              { value: 'namsanTown', label: '남산타운' },
+              { value: 'raemianOksu', label: '래미안옥수리버젠' },
+              { value: 'doosan', label: '두산' },
+            ]}/>
+        </TweakSection>
+      </TweaksPanel>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App/>);
+</script>
+</body>
+</html>

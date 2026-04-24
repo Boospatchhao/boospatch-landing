@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Boospatch Design System — Colors & Type
+   Extracted from Next.js design tokens + research screenshots.
+   Fonts: Korean product UI uses Pretendard (sans) — a common Korean web/UI
+   family. Western text + numerics may use Pretendard or its Latin fallback.
+   ========================================================================== */
+
+/* --- Web fonts -------------------------------------------------------- */
+/* Pretendard is the de-facto Korean product font. Served via CDN. */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+:root {
+  /* ============================================================
+     COLORS — Primary (teal/green) — brand accent
+     ============================================================ */
+  --color-primary-100: #e7f8f4;
+  --color-primary-200: #ade2d5;
+  --color-primary-300: #6fcbb3;
+  --color-primary-400: #06b281;  /* brand primary — logo roof + buttons */
+  --color-primary-500: #18997d;  /* hover / pressed primary */
+
+  /* ============================================================
+     COLORS — Neutral / Gray ramp
+     ============================================================ */
+  --color-gray-50:  #f8f9fc;
+  --color-gray-100: #f0f2f6;
+  --color-gray-200: #e4e6ea;
+  --color-gray-300: #b7babe;
+  --color-gray-400: #9a9da2;
+  --color-gray-500: #7e8186;
+  --color-gray-550: #808181;
+  --color-gray-600: #63666c;
+  --color-gray-700: #494d52;
+  --color-gray-800: #31353a;   /* logo wordmark body */
+  --color-gray-900: #1a1e23;   /* highest-contrast text, CTA fills */
+
+  --color-white: #ffffff;
+  --color-off-white: #feffff;
+  --color-black: #000000;
+
+  /* ============================================================
+     COLORS — Semantic
+     ============================================================ */
+  --color-error: #ec432c;   /* danger CTA, -%, sell alerts */
+  --color-info:  #0b66e4;   /* informational, "blue tag" */
+  --color-success: var(--color-primary-400);
+
+  /* ============================================================
+     COLORS — Accent & Additional
+     ============================================================ */
+  --color-accent-secondary: #484961;  /* dark chip / "dark neutral" */
+  --color-purple: #8d63e9;            /* AI Report highlight / purple CTA */
+
+  /* Soft tints used across chips/badges */
+  --tint-primary: #e7f8f4;
+  --tint-error:   #fdecea;
+  --tint-info:    #e7f0fc;
+  --tint-purple:  #efe9fc;
+
+  /* ============================================================
+     SEMANTIC TOKENS — foreground / background / border
+     ============================================================ */
+  --fg-1: var(--color-gray-900);   /* primary text */
+  --fg-2: var(--color-gray-700);   /* body text */
+  --fg-3: var(--color-gray-500);   /* secondary/meta text */
+  --fg-4: var(--color-gray-400);   /* placeholder / disabled text */
+  --fg-on-primary: var(--color-white);
+  --fg-brand: var(--color-primary-400);
+  --fg-danger: var(--color-error);
+  --fg-info: var(--color-info);
+
+  --bg-page:    var(--color-white);
+  --bg-surface: var(--color-white);
+  --bg-subtle:  var(--color-gray-50);
+  --bg-muted:   var(--color-gray-100);
+  --bg-hover:   var(--color-gray-100);
+
+  --border-1: var(--color-gray-200);  /* default hairline */
+  --border-2: var(--color-gray-300);  /* stronger separator */
+  --border-focus: var(--color-primary-400);
+
+  /* ============================================================
+     TYPOGRAPHY — family stacks
+     ============================================================ */
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system,
+               BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+               'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+               'Malgun Gothic', sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Consolas,
+               monospace;
+
+  /* ============================================================
+     TYPOGRAPHY — sizes (pixel ladder from tokens)
+     ============================================================ */
+  --fs-10: 10px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-19: 19px;
+  --fs-22: 22px;
+  --fs-25-5: 25.5px;
+  --fs-30: 30px;
+  --fs-35: 35px;
+
+  /* Weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Line heights */
+  --lh-tight: 1.25;
+  --lh-normal: 1.45;
+  --lh-loose: 1.6;
+
+  /* Tracking — Korean benefits from slight negative tracking */
+  --ls-tight: -0.02em;
+  --ls-normal: -0.01em;
+
+  /* ============================================================
+     RADII
+     ============================================================ */
+  --radius-xs: 4px;     /* tags */
+  --radius-sm: 6px;     /* small controls */
+  --radius-md: 8px;     /* buttons, inputs */
+  --radius-lg: 12px;    /* cards */
+  --radius-xl: 16px;    /* modals / larger cards */
+  --radius-pill: 999px; /* chips, pills */
+
+  /* ============================================================
+     ELEVATION — shadows
+     Subtle, near-neutral (no colored shadows).
+     ============================================================ */
+  --shadow-xs: 0 1px 2px rgba(26, 30, 35, 0.04);
+  --shadow-sm: 0 1px 3px rgba(26, 30, 35, 0.06),
+               0 1px 2px rgba(26, 30, 35, 0.04);
+  --shadow-md: 0 4px 10px rgba(26, 30, 35, 0.06),
+               0 2px 4px rgba(26, 30, 35, 0.04);
+  --shadow-lg: 0 10px 24px rgba(26, 30, 35, 0.08),
+               0 4px 10px rgba(26, 30, 35, 0.04);
+  --shadow-modal: 0 24px 48px rgba(26, 30, 35, 0.16);
+
+  /* ============================================================
+     SPACING — 4px base grid
+     ============================================================ */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+
+  /* Z-index */
+  --z-base: 0;
+  --z-low: 10;
+  --z-medium: 100;
+  --z-high: 300;
+  --z-modal: 1000;
+  --z-priority: 9999;
+
+  /* Layout */
+  --max-desktop: 1200px;
+
+  /* Motion — easing & duration */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* toast slide-in feel */
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+  --dur-quick: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 320ms;
+}
+
+/* ==========================================================================
+   Base element styles (semantic typography)
+   ========================================================================== */
+
+html { font-family: var(--font-sans); color: var(--fg-1);
+       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+       letter-spacing: var(--ls-normal); }
+
+body { margin: 0; background: var(--bg-page); font-size: var(--fs-14);
+       line-height: var(--lh-normal); color: var(--fg-1); }
+
+/* Headings — Korean UIs tend to use bold heavy headings */
+h1, .h1 { font-size: var(--fs-35); font-weight: var(--fw-extrabold);
+          line-height: var(--lh-tight); letter-spacing: var(--ls-tight);
+          margin: 0; }
+h2, .h2 { font-size: var(--fs-30); font-weight: var(--fw-bold);
+          line-height: var(--lh-tight); letter-spacing: var(--ls-tight);
+          margin: 0; }
+h3, .h3 { font-size: var(--fs-25-5); font-weight: var(--fw-bold);
+          line-height: var(--lh-tight); letter-spacing: var(--ls-tight);
+          margin: 0; }
+h4, .h4 { font-size: var(--fs-22); font-weight: var(--fw-bold);
+          line-height: var(--lh-tight); margin: 0; }
+h5, .h5 { font-size: var(--fs-19); font-weight: var(--fw-bold);
+          line-height: var(--lh-normal); margin: 0; }
+h6, .h6 { font-size: var(--fs-16); font-weight: var(--fw-bold);
+          line-height: var(--lh-normal); margin: 0; }
+
+p  { margin: 0; font-size: var(--fs-14); line-height: var(--lh-loose);
+     color: var(--fg-2); }
+
+.text-lg   { font-size: var(--fs-16); line-height: var(--lh-loose); }
+.text-base { font-size: var(--fs-14); line-height: var(--lh-normal); }
+.text-sm   { font-size: var(--fs-12); line-height: var(--lh-normal);
+             color: var(--fg-3); }
+.text-xs   { font-size: var(--fs-10); line-height: 1.4; color: var(--fg-3); }
+
+.num, .numeric { font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums; }
+
+code, pre, .mono { font-family: var(--font-mono); }
+
+/* Utility: brand mark text-gradient (no gradients on brand itself) */
+.u-brand { color: var(--color-primary-400); }
+.u-muted { color: var(--fg-3); }
+.u-danger { color: var(--color-error); }
+.u-info { color: var(--color-info); }
+.u-purple { color: var(--color-purple); }

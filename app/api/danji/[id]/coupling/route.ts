@@ -43,9 +43,10 @@ export async function GET(
     const candidates = db.prepare(`
       SELECT DISTINCT d.id, d.name, d.sido, d.sigungu, d.address,
              d.household_count, d.approve_year, d.supply_pyeong,
-             d.price_per_pyeong, d.recent_price, d.jeonse_ratio,
+             d.price_per_pyeong, d.recent_price, d.jeonse_price, d.jeonse_ratio,
              d.location_score, d.nationwide_percentile,
-             d.is_brand, d.is_large, d.is_new, d.is_station
+             d.is_brand, d.is_large, d.is_new, d.is_station,
+             d.latitude, d.longitude
       FROM danji d
       WHERE d.id != ?
         AND d.price_per_pyeong BETWEEN ? AND ?

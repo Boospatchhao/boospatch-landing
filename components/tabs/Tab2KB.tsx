@@ -55,10 +55,10 @@ const PERIOD_OPTIONS: Record<KBPeriodic, readonly { label: string; count: number
   ],
 };
 
-// MA 차트 이평선 윈도우: 1년 / 5년
+// MA 차트 이평선 윈도우: 1년 / 3년
 const MA_WINDOWS: Record<KBPeriodic, { short: number; long: number; shortLabel: string; longLabel: string }> = {
-  weekly:  { short: 52,  long: 260, shortLabel: "1년(52주)",  longLabel: "5년(260주)"  },
-  monthly: { short: 12,  long: 60,  shortLabel: "1년(12개월)", longLabel: "5년(60개월)" },
+  weekly:  { short: 52,  long: 156, shortLabel: "1년(52주)",  longLabel: "3년(156주)"  },
+  monthly: { short: 12,  long: 36,  shortLabel: "1년(12개월)", longLabel: "3년(36개월)" },
 };
 
 function classifySignal(type: KBIndexType, latest: number | null, changePct: number | null): SignalLabel {
@@ -871,7 +871,7 @@ export default function Tab2KB() {
       <div ref={maChartRef} style={{ background: "#fff", border: "0.5px solid #e4e6ea", borderRadius: 10, padding: 20 }}>
         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: "var(--space-2)", flexWrap: "wrap", gap: "var(--space-2)" }}>
           <h3 style={{ margin: 0, fontSize: "var(--font-size-sm)", fontWeight: "var(--font-weight-bold)", color: "var(--color-text)" }}>
-            매수우위지수 이동평균선 (1년 / 5년) — 추세 전환 신호
+            매수우위지수 이동평균선 (1년 / 3년) — 추세 전환 신호
           </h3>
           <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
             <span style={{ fontSize: "var(--font-size-xs)", color: "var(--color-text-muted)" }}>
@@ -883,7 +883,7 @@ export default function Tab2KB() {
           </div>
         </div>
         <p style={{ margin: "0 0 var(--space-4)", fontSize: "var(--font-size-xs)", color: "var(--color-text-muted)", lineHeight: 1.6 }}>
-          단기(1년) 이평선이 장기(5년) 이평선을 <strong style={{ color: "#16A34A" }}>위로 돌파(GC)</strong> = 추세 상승 시작 ·
+          단기(1년) 이평선이 장기(3년) 이평선을 <strong style={{ color: "#16A34A" }}>위로 돌파(GC)</strong> = 추세 상승 시작 ·
           <strong style={{ color: "#DC2626" }}> 아래로 돌파(DC)</strong> = 추세 하락 시작.
           매매수급지수는 매매가격의 <strong>선행지표</strong>입니다.
         </p>
@@ -917,7 +917,7 @@ export default function Tab2KB() {
                 formatter={(value: string) => ({
                   sentimentIndex: "매수우위지수",
                   shortMA: "단기 1년 이평",
-                  longMA: "장기 5년 이평",
+                  longMA: "장기 3년 이평",
                   priceIndex: `${region} 매매가격(우축)`,
                 }[value] ?? value)}
               />
@@ -954,7 +954,7 @@ export default function Tab2KB() {
               {/* 단기 1년 이평선 — 빨강 */}
               <Line yAxisId="L" type="monotone" dataKey="shortMA" stroke="#DC2626" strokeWidth={2} dot={false} connectNulls isAnimationActive={false} />
 
-              {/* 장기 5년 이평선 — 검정 두꺼운 선 */}
+              {/* 장기 3년 이평선 — 검정 두꺼운 선 */}
               <Line yAxisId="L" type="monotone" dataKey="longMA" stroke="#1a1e23" strokeWidth={2.5} dot={false} connectNulls isAnimationActive={false} />
 
               {/* 매매가격 오버레이 — 우축, 진한 그린 */}
@@ -966,7 +966,7 @@ export default function Tab2KB() {
                 const labels = [
                   { y: last.sentimentIndex, color: "#9b6dd1", text: "매수우위지수", axis: "L" },
                   { y: last.shortMA,        color: "#DC2626", text: "단기(1년)",   axis: "L" },
-                  { y: last.longMA,         color: "#1a1e23", text: "장기(5년)",   axis: "L" },
+                  { y: last.longMA,         color: "#1a1e23", text: "장기(3년)",   axis: "L" },
                   { y: last.priceIndex,     color: "#06b281", text: "매매가격",     axis: "R" },
                 ];
                 return labels
